@@ -1,0 +1,33 @@
+# Google Gemini API Configuration
+google:
+  # 사용 가능한 모델: "gemini-2.5-flash", "gemini-2.5-pro", "gemini-3-pro-preview"
+  model: "gemini-2.5-flash"
+  max_output_tokens: 8192
+  temperature: 0.0
+  top_p: 1.0
+
+# Translation settings
+translation:
+  chunk_size: 1000  # 세그먼트 단위 (단어 수)
+  context_overlap: 200  # 이전 세그먼트와의 중복 (용어 일관성)
+
+# RAG settings
+rag:
+  collection_name: "patent_style_guide"
+  embedding_model: "sentence-transformers/all-MiniLM-L6-v2"
+  top_k_rules: 5  # 검색할 관련 규칙 수
+
+# QA settings
+qa:
+  enable_auto_fix: false  # 자동 수정 여부 (기본: false, 리포트만)
+  severity_threshold: "minor"  # 리포트할 최소 심각도
+
+# TM settings
+tm:
+  similarity_threshold: 0.85  # TM 매칭 임계값
+  max_suggestions: 5  # 제안할 최대 TM 수
+
+# Logging
+logging:
+  level: "INFO"
+  file: "logs/translation.log"

@@ -1,0 +1,6 @@
+A method for characterizing a protein, comprising:
+obtaining a protein sample;
+preparing said sample for spectroscopy;
+subjecting said sample to an experiment;
+eliminating noise from empty areas of a resulting spectrum;
+and analyzing the spectrum to characterize the protein.

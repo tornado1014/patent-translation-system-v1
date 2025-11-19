@@ -1,0 +1,5 @@
+A method for processing data comprising:
+obtaining a substrate adapted to receive signals;
+detaching the distal end from the proximal end;
+processing more than one data element; and
+analyzing the result, wherein the substrate is configured to interface with the system.

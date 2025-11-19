@@ -1,0 +1,85 @@
+{
+  "domain_terms": {
+    "electronics_semiconductor": {
+      "substrate": "기판",
+      "layer": "층",
+      "ground": "접지",
+      "grounding": "접지",
+      "cathode": "음극",
+      "anode": "양극"
+    },
+    "chemistry_pharma": {
+      "substrate": "기재",
+      "layer": "층, 막",
+      "cathode": "양극",
+      "anode": "음극",
+      "incubate": "정치",
+      "culture": "배양"
+    },
+    "mechanical": {
+      "distal end": "원위 단부",
+      "proximal end": "근위 단부",
+      "either end of": "일단",
+      "communication": "연통",
+      "fluid communication": "유체 연통"
+    },
+    "general": {
+      "detach": "탈리하다",
+      "detachable": "탈착식, 탈착 가능한",
+      "fault": "고장",
+      "source": "선원",
+      "radiation source": "방사선 선원",
+      "one or more surfactants": "1종 이상의 계면활성제",
+      "post transition metal": "전이후금속",
+      "associated": "연결된다",
+      "generally": "전체적으로",
+      "intake": "흡입구",
+      "side": "측면, 면",
+      "essentially": "기본적으로",
+      "recite": "기술하다, 설명하다",
+      "a person skilled in the art": "통상의 기술자",
+      "a person having ordinary skills in the art": "통상의 기술자",
+      "define": "정의하다, 획정하다",
+      "comprising": "포함하는",
+      "consisting of": "로 구성되는",
+      "consisting essentially of": "를 본질적으로 포함하는"
+    }
+  },
+  "forbidden_translations": {
+    "detach": ["탈착하다"],
+    "distal end": ["말단"],
+    "proximal end": ["말단"],
+    "ground": ["지면"],
+    "recite": ["암송하다", "열거하다"]
+  },
+  "context_dependent": {
+    "substrate": {
+      "electronics": "기판",
+      "semiconductor": "기판",
+      "chemistry": "기재",
+      "pharma": "기재"
+    },
+    "fault": {
+      "computing": "오류",
+      "mechanical": "고장",
+      "electrical": "고장"
+    },
+    "source": {
+      "radiation": "선원",
+      "general": "공급원"
+    }
+  },
+  "number_expressions": {
+    "more than one": "둘(2개) 이상, 하나(1개) 초과",
+    "less than two": "하나(1개) 이하, 둘(2개) 미만",
+    "equal to or greater than one": "하나(1개) 이상",
+    "equal to or less than two": "둘(2개) 이하"
+  },
+  "seq_id_format": "서열번호 {number}",
+  "boilerplate_translations": {
+    "a person skilled in the art": "통상의 기술자",
+    "the present invention": "본 발명",
+    "in one embodiment": "일 실시형태에서",
+    "in a preferred embodiment": "바람직한 실시형태에서"
+  }
+}

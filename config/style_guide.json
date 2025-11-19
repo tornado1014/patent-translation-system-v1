@@ -1,0 +1,179 @@
+{
+  "formatting_rules": {
+    "temperature": {
+      "pattern": "\\d+\\s*℃",
+      "correct_format": "{number} ℃",
+      "description": "온도 표기 시 숫자와 단위 사이에 공백 필요",
+      "severity": "minor"
+    },
+    "percentage": {
+      "pattern": "\\d+\\s*%",
+      "correct_format": "{number} %",
+      "description": "퍼센트 표기 시 숫자와 기호 사이에 공백 필요",
+      "severity": "minor"
+    },
+    "claim_ending": {
+      "pattern": "\\.$",
+      "description": "청구항은 마침표로 종결되어야 함",
+      "severity": "major"
+    },
+    "seq_id": {
+      "pattern": "서열\\s?번호\\s?:?\\s?\\d+",
+      "correct_format": "서열번호 {number}",
+      "description": "서열번호 형식: '서열번호 숫자' (콜론 없음, 공백 하나)",
+      "severity": "minor"
+    }
+  },
+  "terminology_rules": {
+    "detach": {
+      "correct": "탈리하다",
+      "forbidden": ["탈착하다"],
+      "severity": "major",
+      "reference": "2.4"
+    },
+    "distal_end": {
+      "correct": "원위 단부",
+      "forbidden": ["말단"],
+      "severity": "major",
+      "reference": "2.4"
+    },
+    "proximal_end": {
+      "correct": "근위 단부",
+      "forbidden": ["말단"],
+      "severity": "major",
+      "reference": "2.4"
+    },
+    "ground_electrical": {
+      "correct": "접지",
+      "forbidden": ["지면"],
+      "context": "전기/전자",
+      "severity": "major",
+      "reference": "2.4"
+    },
+    "recite": {
+      "correct": "기술하다, 설명하다",
+      "forbidden": ["암송하다", "열거하다"],
+      "context": "특허",
+      "severity": "major",
+      "reference": "2.4"
+    }
+  },
+  "grammar_rules": {
+    "antecedent_basis": {
+      "description": "선행사가 있는 명사는 '상기'를 붙여야 함",
+      "pattern": "the\\s+(compound|device|method|system)",
+      "korean_pattern": "상기\\s+(화합물|장치|방법|시스템)",
+      "severity": "major",
+      "reference": "2.2.10"
+    },
+    "transitional_phrases": {
+      "comprising": "포함하는",
+      "consisting of": "로 구성되는",
+      "consisting essentially of": "를 본질적으로 포함하는",
+      "severity": "critical",
+      "reference": "2.2.12"
+    },
+    "particles": {
+      "description": "조사 사용 규칙 (은/는, 이/가, 을/를)",
+      "subject_marker": "이/가",
+      "topic_marker": "은/는",
+      "object_marker": "을/를",
+      "severity": "minor",
+      "reference": "2.3.12"
+    }
+  },
+  "punctuation_rules": {
+    "colon_usage": {
+      "description": "한국어에서 콜론(:)은 명사 또는 명사구 뒤에만 사용 가능",
+      "invalid_after": ["동사", "완전한 문장"],
+      "severity": "minor",
+      "reference": "2.3.15"
+    },
+    "semicolon_usage": {
+      "description": "세미콜론은 복잡한 나열에서 내부 구두점이 있을 때만 사용",
+      "allowed_contexts": ["complex_series"],
+      "forbidden_contexts": ["independent_clauses", "simple_lists"],
+      "severity": "neutral",
+      "reference": "2.3.16"
+    },
+    "comma_usage": {
+      "description": "영어 콤마를 기계적으로 복사하지 말 것. 한국어 문법에 따라 판단",
+      "avoid_after": ["짧은 주어", "명확한 문장"],
+      "severity": "neutral",
+      "reference": "2.3.14"
+    }
+  },
+  "claim_structure_rules": {
+    "noun_phrase_ending": {
+      "description": "청구항은 완전한 명사구로 종결되어야 함",
+      "preferred_endings": ["방법.", "장치.", "시스템.", "화합물."],
+      "patterns": [
+        "를 포함하는 방법.",
+        "로 구성되는 장치.",
+        "이 특성화되는 방법."
+      ],
+      "severity": "major",
+      "reference": "2.2"
+    },
+    "formula_handling": {
+      "description": "화학식 처리 시 한국어 문법 준수",
+      "preferred_structure": "하기 화학식의 ... 포함하되, [화학식] 상기 식에서",
+      "severity": "major",
+      "reference": "2.2.2"
+    }
+  },
+  "common_mistranslations": {
+    "numbers": {
+      "more_than_one": {
+        "wrong": "하나(1개) 이상",
+        "correct": "둘(2개) 이상, 하나(1개) 초과"
+      },
+      "less_than_two": {
+        "wrong": "둘(2개) 이하",
+        "correct": "하나(1개) 이하, 둘(2개) 미만"
+      }
+    },
+    "particles": {
+      "either_end": {
+        "wrong": "양 단부",
+        "correct": "일단",
+        "reason": "either는 둘 중 하나를 의미"
+      }
+    },
+    "dependent_nouns": {
+      "neunde_vs_neun_de": {
+        "conjunction": "는데",
+        "dependent_noun": "는 데",
+        "description": "연결어미와 의존명사 구분"
+      },
+      "neunba_vs_neun_ba": {
+        "conjunction": "는바",
+        "dependent_noun": "는 바",
+        "description": "연결어미와 의존명사 구분"
+      }
+    }
+  },
+  "priority_order": [
+    "용어 일관성 (같은 영어 → 항상 같은 한국어)",
+    "스타일 가이드 준수",
+    "자연스러운 한국어"
+  ],
+  "evaluation_severity": {
+    "critical": {
+      "description": "법적, 기술적 의미 변경 또는 TAC 섹션 오류",
+      "examples": ["transitional_phrases", "major_omissions"]
+    },
+    "major": {
+      "description": "의미 혼동 가능성 또는 중요 부분 오류",
+      "examples": ["terminology_errors", "claim_structure"]
+    },
+    "minor": {
+      "description": "의미 손실 없으나 품질 저하",
+      "examples": ["formatting", "minor_style"]
+    },
+    "neutral": {
+      "description": "선호도 차이, 일관성 문제",
+      "examples": ["punctuation_preference"]
+    }
+  }
+}
