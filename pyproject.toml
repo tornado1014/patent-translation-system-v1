@@ -36,6 +36,9 @@ dev = [
     "langgraph",
     "langchain",
     "langchain-google-genai",
+    "streamlit==1.33.0",
+    "Pillow==9.5.0",
+    "pyarrow==14.0.1",
 ]
 
 [build-system]

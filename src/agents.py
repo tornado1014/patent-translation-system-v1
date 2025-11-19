@@ -2,6 +2,7 @@ from langchain_core.prompts import ChatPromptTemplate, PromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.output_parsers import JsonOutputParser
 from .schemas import AgentState, AnalysisResult, ReviewResult
+from .tm_manager import TranslationMemory
 import json
 from dotenv import load_dotenv
 from pathlib import Path
@@ -98,3 +99,52 @@ def reviewer_node(state: AgentState):
     })
     
     return {"review_result": result}
+
+def tm_search_node(state: AgentState):
+    """
+    Searches the Translation Memory for existing translations.
+    """
+    print("--- Running TM Search Node ---")
+    tm = TranslationMemory()
+    analysis = state["analysis_result"]
+    domain = analysis.get("domain", "general")
+    
+    matches = tm.search(state["original_text"], domain=domain, similarity_threshold=1.0)
+    tm.close()
+    
+    if matches and matches[0]["similarity"] == 1.0:
+        print(f"--- Found 100% match in TM. Skipping translation. ---")
+        return {
+            "final_translation": matches[0]["target"],
+            "tm_match_found": True
+        }
+    else:
+        print("--- No exact match found in TM. Proceeding to translation. ---")
+        return {"tm_match_found": False}
+
+def tm_save_node(state: AgentState):
+    """
+    Saves the final translation to the Translation Memory.
+    """
+    print("--- Running TM Save Node ---")
+    tm = TranslationMemory()
+    
+    # Only save if the review passed and it was a new translation
+    if state.get("review_result", {}).get("passed") and not state.get("tm_match_found"):
+        analysis = state["analysis_result"]
+        domain = analysis.get("domain", "general")
+        
+        tm.add(
+            source=state["original_text"],
+            target=state["draft_translation"],
+            domain=domain,
+            document_type=state.get("document_type", "claim"),
+            quality_score=10 # Assuming perfect score after passing review
+        )
+        print("--- Saved new translation to TM. ---")
+    
+    tm.close()
+    
+    # This node doesn't modify the main state path, just performs an action.
+    # We set final_translation here if it came from the translator path.
+    return {"final_translation": state.get("draft_translation")}

@@ -13,6 +13,7 @@ class AgentState(TypedDict):
     draft_translation: str
     review_result: dict
     final_translation: str
+    tm_match_found: bool
     messages: Annotated[List[BaseMessage], lambda x, y: x + y]
 
 

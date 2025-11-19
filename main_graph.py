@@ -41,7 +41,9 @@ def run(input_file, use_flash_review):
     
     final_state = app.invoke(initial_state)
 
-    translation = final_state.get("draft_translation", "No translation generated.")
+    translation = final_state.get("final_translation")
+    if not translation:
+        translation = final_state.get("draft_translation", "No translation generated.")
     
     console.print(Panel("[bold green]✅ Translation Complete[/bold green]"))
     
